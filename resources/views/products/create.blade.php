@@ -7,6 +7,10 @@
 <input class="form-control" type="text" name="detalle" value="">
 <br/>
 <label for="precio">{{'precio'}}</label>
+
 <input class="form-control" type="text" name="precio" value="">
+<br/>
 <input type="submit" value="agregar">
+<br/>
+<a href="{{url('products')}}">Regresar</a>
 </form>

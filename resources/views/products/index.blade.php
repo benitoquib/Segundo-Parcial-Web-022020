@@ -1,3 +1,5 @@
+<a href="{{url('products/create')}}">Agregar producto</a>
+
 <table class="table table-light">
     <thead class="thead-light">
         <tr>
@@ -15,6 +17,16 @@
             <td>{{$producto->nombre}}</td>
             <td>{{$producto->detalle}}</td>
             <td>{{$producto->precio}}</td>
+            <td>
+            <a href="{{url('/products/'.$producto->id.'/edit')}}">
+            Editar
+            </a>
+            <form method="post" action="{{url('/products/'.$producto->id)}}">
+            {{csrf_field()}}
+            {{method_field('DELETE')}}
+            <button type="submit" onclick="return confirm('Desea borrar la informacion');">Borrar</button>
+            </form>
+            </td>
         </tr>
     @endforeach
     </tbody>

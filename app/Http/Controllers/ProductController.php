@@ -43,8 +43,8 @@ class ProductController extends Controller
         //$datosproducto=request()->all();
         $datosproducto=request()->except('_token');
         Products::insert($datosproducto);
-        return response()->json($datosproducto);
-        
+        //return response()->json($datosproducto);
+        return redirect("products");
         
     }
 
@@ -65,9 +65,11 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
         //
+        $product=Products::findOrFail($id);
+        return view('products.edit',compact('product'));
     }
 
     /**
@@ -77,9 +79,13 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
         //
+        $datosproducto=request()->except(['_token','_method']);
+        Products::where('id','=',$id)->update($datosproducto);  
+        $product=Products::findOrFail($id);
+        return view('products.edit',compact('product'));
     }
 
     /**
@@ -88,8 +94,10 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
         //
+        Products::destroy($id); 
+        return redirect('products');
     }
 }
