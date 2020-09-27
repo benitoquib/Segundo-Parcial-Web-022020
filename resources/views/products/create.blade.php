@@ -2,7 +2,7 @@
 @section('content')
 <div class="container">
 
-<form action="{{url('/products')}}" method="POST" enctype="multipart/form-data">
+<form action="{{url('/products')}}" class="form-horizontal" method="POST" enctype="multipart/form-data">
 {{csrf_field()}}
 @include('products.form',['Modo'=>'crear'])
 

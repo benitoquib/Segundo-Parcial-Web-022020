@@ -3,13 +3,16 @@
 @section('content')
 <div class="container">
 
-@if(Session::has('Mensaje')){{
-    Session::get('Mensaje')
-}}
-@endif
-<a href="{{url('products/create')}}">Agregar producto</a>
+@if(Session::has('Mensaje'))
+<div class="alert alert-success" role="alert">
+    {{Session::get('Mensaje')}}
+</div>
 
-<table class="table table-light">
+@endif
+<a href="{{url('products/create')}}" class="btn btn-success">Agregar producto</a>
+<br/>
+<br/>
+<table class="table table-light table-hover" >
     <thead class="thead-light">
         <tr>
             <th>#</th>
@@ -27,18 +30,19 @@
             <td>{{$producto->detalle}}</td>
             <td>{{$producto->precio}}</td>
             <td>
-            <a href="{{url('/products/'.$producto->id.'/edit')}}">
+            <a class="btn btn-dark" href="{{url('/products/'.$producto->id.'/edit')}}">
             Editar
             </a>
-            <form method="post" action="{{url('/products/'.$producto->id)}}">
+            <form method="post" action="{{url('/products/'.$producto->id)}}" style="display:inline">
             {{csrf_field()}}
             {{method_field('DELETE')}}
-            <button type="submit" onclick="return confirm('Desea borrar la informacion');">Borrar</button>
+            <button class="btn btn-danger" type="submit" onclick="return confirm('Desea borrar la informacion');">Borrar</button>
             </form>
             </td>
         </tr>
     @endforeach
     </tbody>
 </table>
+{{$products->links()}}
 </div>
 @endsection
