@@ -1,3 +1,12 @@
+
+@extends('layouts.app')
+@section('content')
+<div class="container">
+
+@if(Session::has('Mensaje')){{
+    Session::get('Mensaje')
+}}
+@endif
 <a href="{{url('products/create')}}">Agregar producto</a>
 
 <table class="table table-light">
@@ -31,3 +40,5 @@
     @endforeach
     </tbody>
 </table>
+</div>
+@endsection

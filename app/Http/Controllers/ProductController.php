@@ -44,7 +44,8 @@ class ProductController extends Controller
         $datosproducto=request()->except('_token');
         Products::insert($datosproducto);
         //return response()->json($datosproducto);
-        return redirect("products");
+        return redirect("products")->with('Mensaje','Producto registrado correctamente');
+
         
     }
 
@@ -84,8 +85,9 @@ class ProductController extends Controller
         //
         $datosproducto=request()->except(['_token','_method']);
         Products::where('id','=',$id)->update($datosproducto);  
-        $product=Products::findOrFail($id);
-        return view('products.edit',compact('product'));
+        //$product=Products::findOrFail($id);
+        //return view('products.edit',compact('product'));
+        return redirect("products")->with('Mensaje','Producto modificado correctamente');
     }
 
     /**
@@ -98,6 +100,6 @@ class ProductController extends Controller
     {
         //
         Products::destroy($id); 
-        return redirect('products');
+        return redirect("products")->with('Mensaje','Producto eliminado correctamente');
     }
 }
