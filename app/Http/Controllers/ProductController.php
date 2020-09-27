@@ -13,11 +13,21 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        $datos['products']=Products::paginate(5);
-        return view("products.index",$datos);
+        $keyword = $request->get('search');
+        $perPage = 25;
+
+        if (!empty($keyword)) {
+            $products = product::where('nombre', 'LIKE', "%$keyword%")
+                ->orWhere('detalle', 'LIKE', "%$keyword%")
+                ->orWhere('precio', 'LIKE', "%$keyword%")
+                ->latest()->paginate($perPage);
+        } else {
+            $products = product::latest()->paginate($perPage);
+        }
+
+        return view('products.index', compact('products'));
     }
 
     /**
