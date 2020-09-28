@@ -1,0 +1,15 @@
+.navegacion{
+    color: blanchedalmond;
+    text-decoration-color: blanchedalmond;
+}
+.contenedor{
+    background:url(../images/fondo1.jpg);
+}
+.iniciofondo{
+    background:url(../images/fondo1.jpg);
+}
+.etiquetas{
+    color: yellow;
+    font-size: large;
+    
+}

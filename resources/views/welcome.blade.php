@@ -4,16 +4,19 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Ferreteria Beneq</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
         <!-- Styles -->
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <style>
             html, body {
                 background-color: #fff;
-                color: #636b6f;
+                background:url(../images/fondo1.jpg);
+                color: black;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
                 height: 100vh;
@@ -45,17 +48,20 @@
             }
 
             .title {
-                font-size: 84px;
+                font-size: 100px;
+                font-style: oblique;
             }
 
             .links > a {
-                color: #636b6f;
+                background-color: forestgreen;
+                color: black;
                 padding: 0 25px;
-                font-size: 13px;
+                font-size: 40px;
                 font-weight: 600;
                 letter-spacing: .1rem;
                 text-decoration: none;
                 text-transform: uppercase;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
             }
 
             .m-b-md {
@@ -63,22 +69,21 @@
             }
         </style>
     </head>
+
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('home'))
-                <div class="top-right links">
-                        <a href="{{ url('/products') }}">Entrar</a>
-                </div>
-            @endif
-
             <div class="content">
                 <div class="title m-b-md">
                     Ferreteria Beneq
                 </div>
 
-                <div class="links">
+                <div class="links btn btn-primary">
+                    @if (Route::has('home'))
+                        <a href="{{ url('/products') }}">Entrar</a>
+                    @endif
                 </div>
             </div>
         </div>
     </body>
+
 </html>
